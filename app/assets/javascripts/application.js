@@ -12,4 +12,10 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+//= require jquery.min
+//= require bootstrap.min
+//= require jquery.canvasjs.min
+//= require jquery.validate
+//= require i18n.js
+//= require i18n/translations
+//= require custom

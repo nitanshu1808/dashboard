@@ -1,0 +1,84 @@
+.filterable {
+  margin-top: 15px;
+}
+.filterable .panel-heading .pull-right {
+  margin-top: -20px;
+}
+.filterable .filters input[disabled] {
+  background-color: transparent;
+  border: none;
+  cursor: auto;
+  box-shadow: none;
+  padding: 0;
+  height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+  color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+  color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+  color: #333;
+}
+
+.navbar-default{
+  background-color: #337ab7 !important;
+  border-color: #e7e7e7 !important;
+}
+.navbar-brand{
+  color: white !important;
+  font-weight: bold;
+}
+
+.welcm_msg{
+  color: #337ab7;
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+#chartContainer, #graphContainer{
+  height: 450px;
+  width:  100%;
+}
+
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.filter{
+  margin: 17px 34px;
+}
+
+.align-destry{
+  margin-bottom: 8px
+}
+
+.create-btn{
+  margin: 0px 20px;
+}
+table, th, tr, td{
+  border: 1px solid #337ab7 !important;
+}
+
+.filter th{
+  background-color: #337ab7;
+  color: white;
+  font-weight: bold;
+}
+
+.align-dropdwn{
+  margin-left: 40px;
+}
+
+.custom-heading{
+  font-size: 20px;
+  margin-right: 30px;
+  font-weight: bold;
+}
+
+
+.pagination{
+  margin: 0px !important;
+}

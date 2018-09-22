@@ -1,0 +1,12 @@
+default: &default
+  base_url:   'https://messagedashboardapi.herokuapp.com/api/v1/'
+  users:      'users'
+
+development:
+  <<: *default
+
+qa:
+  <<: *default
+
+production:
+  <<: *default

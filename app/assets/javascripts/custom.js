@@ -2,6 +2,7 @@ $(document).ready(function(){
   $('.filterable .btn-filter').on('click', onFilterbtnClick);
   $('.filterable .filters input').on('keyup', onKeyPressTextSearch);
   $('.delete-user').on('click', onDeleteBtnClick);
+  // $('.pagination li a').on('click', onPageNumberClick)
 });
 
 
@@ -164,4 +165,49 @@ function onDeleteBtnClick( evt ){
 
     ajaxCall('get', 'delete_user', data, onDone, onFail, 'json');
   }  
+}
+
+
+function onPageNumberClick( evt ){
+  var self    = $(this);
+  var title   = self.text();
+  var pageNum = self.attr('data-page-no');
+
+  var data    = { page: pageNum}
+
+  var onDone  = function( res ) {
+    console.log("hello")
+  }
+
+  var onFail = function( err ) {
+    console.log( "Error --> ", err );
+  }
+
+  ajaxCall('get', '/', data, onDone, onFail, 'json');
+}
+
+function setPrevNextPageLink( type, page_num ){
+  $('.canvasjs-chart-credit').remove();
+  var next      = $('.next')
+  var prev      = $('.previous')
+  var pageNum   = parseInt(page_num);
+  var totalPages = parseInt($(".pagination").attr("data-total-page"));
+  switch (type) {
+    case  'Next':
+      setPrevNextAttrVal(next, prev, pageNum + 1, pageNum)
+      break;
+    case  'Previous':
+      setPrevNextAttrVal(next, prev, pageNum, pageNum <= 0 && 0)
+    break;
+    case 'Last':
+      setPrevNextAttrVal(next, prev, 0, totalPages - 1);
+      break;
+    case 'First':
+    setPrevNextAttrVal(next, prev, 2, 0)
+  }
+}
+
+function setPrevNextAttrVal(next, prev, nextVal, prevVal){
+  next.attr('href', location + '?page=' +  (nextVal) + '&type=Next');
+  prev.attr('href', location + '?page=' +  (prevVal) + '&type=Previous');
 }

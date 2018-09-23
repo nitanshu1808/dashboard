@@ -28,7 +28,7 @@ module HomeHelper
   end
 
   def create_links( val )
-    content_tag(:a, href: root_url({page: page_num(val), sort: params["sort"]}.compact ), "data-remote": true) do
+    content_tag(:a, href: root_url({"page": page_num(val), type: link_text(val)}), "data-page-no": page_num(val), "data-remote": true, class: link_text(val).downcase) do
       link_text(val)
     end
   end
@@ -50,10 +50,8 @@ module HomeHelper
     case val
     when 4
       @response["total_pages"]
-    when I18n.t("app.next"), 2
-      (params["page"] && params["page"].to_i + 1) || val
-    when I18n.t("app.prev"), 3
-      (params["page"] && params["page"].to_i > 1 && params["page"].to_i - 1) || nil
+    when 3, 1
+      nil
     else
       val
     end
@@ -61,6 +59,10 @@ module HomeHelper
 
   def set_sort_btn_val
     params["sort"] ? I18n.t("app." + params["sort"]) : I18n.t("app.sort_by")
+  end
+
+  def current_page
+    params["page"]
   end
 
 end

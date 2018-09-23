@@ -1,3 +1,3 @@
-$(".display-users").html("<%= j(render partial: 'shared/users' ) %>")
+$(".display-users").html("<%= j(render partial: 'shared/users') %>")
 displayGraphAndChart( <%= @users.to_json.html_safe %> )
-$('.canvasjs-chart-credit').remove();
+setPrevNextPageLink( '<%= params["type"] %>', '<%= params["page"] %>' )

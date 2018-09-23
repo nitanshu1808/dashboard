@@ -55,8 +55,8 @@
             <button class="btn btn-default dropdown-toggle btn-xs" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-sort"></span> <%= set_sort_btn_val %>
             <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <li><%= link_to I18n.t("app.amount"), root_path(sort: 'amount'), "data-remote": true  %></li>
-              <li><%= link_to I18n.t("app.first_name"), root_path(sort: 'first_name'), "data-remote": true %></a></li>
+              <li><%= link_to I18n.t("app.amount"), root_url({sort: "amount", page: current_page}), "data-remote": true %></li>
+              <li><%= link_to I18n.t("app.first_name"), root_url({sort: "first_name", page: current_page}), "data-remote": true %></a></li>
             </ul>
           </div>
         </div>
@@ -96,7 +96,7 @@
           <tfoot>
             <tr>
               <td colspan="6" class="text-center">
-                <ul class="pagination">
+                <ul class="pagination" data-total-page="<%= @response["total_pages"] %>">
                   <%= pagination_links %>
                 </ul>
               </td>

@@ -1,64 +1,110 @@
-<div class="panel panel-primary filterable">
-  <div class="panel-heading">
-    <div class="panel-title">
-      <div class="pull-left">
-        <div class="custom-heading"><span class=" glyphicon glyphicon-user"></span> <%= I18n.t("app.users") %></div>
-      </div>
+<div class="row">
 
-      <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle btn-xs" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-sort"></span> <%= I18n.t("app.sort_by") %>
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#"><%= I18n.t("app.amount") %></a></li>
-          <li><a href="#"><%= I18n.t("app.first_name") %></a></li>
-        </ul>
-      </div>
-
+  <div class="col-md-3">
+    <div class="filter">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><span class="glyphicon glyphicon-envelope"></span>
+               <%= I18n.t("app.email_filter") %>
+             </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% sub_domain(@users).each do |val| %>
+            <tr>
+              <td>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value=""><%= val %>
+                </label>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><span class="glyphicon glyphicon-filter"></span> <%= I18n.t("app.lastname_filter") %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% characters_group.each do |val| %>
+            <tr>
+              <td>
+                <label class="checkbox-inline">
+                  <input type="checkbox" value=""><%= val %>
+                </label>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-
-    <div class="pull-right">
-      <button class="btn btn-default btn-xs create-btn"><span class="glyphicon glyphicon glyphicon-plus"></span> <%= I18n.t("app.create") %></button>
-      <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon glyphicon-search"></span>  <%= I18n.t("app.search") %></button>
-    </div>
-
   </div>
-  <table class="table">
-    <thead>
-      <tr class="filters">
-        <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.email') %>" disabled></th>
-        <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.first_name') %>" disabled></th>
-        <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.last_name') %>" disabled></th>
-        <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.amount') %>" disabled></th>
-        <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.created') %>" disabled></th>
-        <th><input type="text" class="form-control destroy" placeholder="<%= I18n.t("app.destroy") %>" disabled></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user['email'] %></td>
-          <td><%= user['first_name'] %></td>
-          <td><%= user['last_name'] %></td>
-          <td><%= user['amount'] %></td>
-          <td><%= date_format( user['created_at'] ) %></td>
-          <td>
-            <%= link_to("javascript:void(0)", class: "btn btn-danger") do %>
-              <span class=" glyphicon glyphicon-trash"></span>  <%= I18n.t('app.delete') %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-    <% if pagination %>
-      <tfoot>
-        <tr>
-          <td colspan="6" class="text-center">
-            <ul class="pagination">
-              <%= pagination_links %>
+
+  <div class="col-md-8">
+    <div class="panel panel-primary filterable">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <div class="pull-left">
+            <div class="custom-heading"><span class=" glyphicon glyphicon-user"></span> <%= I18n.t("app.users") %></div>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle btn-xs" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-sort"></span> <%= set_sort_btn_val %>
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><%= link_to I18n.t("app.amount"), root_path(sort: 'amount'), "data-remote": true  %></li>
+              <li><%= link_to I18n.t("app.first_name"), root_path(sort: 'first_name'), "data-remote": true %></a></li>
             </ul>
-          </td>
-        </tr>
-      </tfoot>
-    <% end %>
-  </table>
+          </div>
+        </div>
+        <div class="pull-right">
+          <button class="btn btn-default btn-xs create-btn"><span class="glyphicon glyphicon glyphicon-plus"></span> <%= I18n.t("app.create") %></button>
+          <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon glyphicon-search"></span>  <%= I18n.t("app.search") %></button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr class="filters">
+            <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.email') %>" disabled></th>
+            <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.first_name') %>" disabled></th>
+            <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.last_name') %>" disabled></th>
+            <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.amount') %>" disabled></th>
+            <th><input type="text" class="form-control srchable" placeholder="<%= I18n.t('app.created') %>" disabled></th>
+            <th><input type="text" class="form-control destroy" placeholder="<%= I18n.t("app.destroy") %>" disabled></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user['email'] %></td>
+              <td><%= user['first_name'] %></td>
+              <td><%= user['last_name'] %></td>
+              <td><%= user['amount'] %></td>
+              <td><%= date_format( user['created_at'] ) %></td>
+              <td>
+                <%= link_to("javascript:void(0)", class: "btn btn-danger delete-user", "data-id": user["id"] ) do %>
+                  <span class=" glyphicon glyphicon-trash"></span>  <%= I18n.t('app.delete') %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        <% if pagination %>
+          <tfoot>
+            <tr>
+              <td colspan="6" class="text-center">
+                <ul class="pagination">
+                  <%= pagination_links %>
+                </ul>
+              </td>
+            </tr>
+          </tfoot>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
 </div>

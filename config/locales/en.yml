@@ -24,3 +24,4 @@ en:
     first:           'First'
     next:            'Next'
     prev:            'Previous'
+    confirm_deletion: "Are you sure, You want to delete the user?"

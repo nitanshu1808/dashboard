@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('.filterable .btn-filter').on('click', onFilterbtnClick);
   $('.filterable .filters input').on('keyup', onKeyPressTextSearch);
+  $('.delete-user').on('click', onDeleteBtnClick);
 });
 
 
@@ -129,4 +130,38 @@ function findTotal( obj ){
   var sum = 0
   for (var i in obj) { sum += obj[i].amount }
   return sum;
+}
+
+
+function ajaxCall ( mType, url, dataObj,doneCB, failCB, dataType) {
+  var ajaxObj = {
+    method: mType,
+    url: url,
+    data: dataObj,
+    dataType: 'json'
+  }
+  $.ajax(ajaxObj)
+  .done(doneCB)
+  .fail(failCB);
+}
+
+function onDeleteBtnClick( evt ){
+  var confirmDeletion =  confirm(I18n.t("app.confirm_deletion"));
+  
+  if (confirmDeletion){
+    var self    = $(this);
+    var data    = {
+      id: self.attr('data-id')
+    };
+
+    var onDone  = function( res ) {
+      self.closest('tr').remove();
+    }
+
+    var onFail = function( err ) {
+      console.log( "Error --> ", err );
+    }
+
+    ajaxCall('get', 'delete_user', data, onDone, onFail, 'json');
+  }  
 }

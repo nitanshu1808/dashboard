@@ -12,57 +12,7 @@
 
 <hr>
 
-<div class="row">
-
-  <div class="col-md-3">
-    <div class="filter">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th><span class="glyphicon glyphicon-envelope"></span>
-               <%= I18n.t("app.email_filter") %>
-             </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% sub_domain(@users).each do |val| %>
-            <tr>
-              <td>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value=""><%= val %>
-                </label>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th><span class="glyphicon glyphicon-filter"></span> <%= I18n.t("app.lastname_filter") %>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% characters_group.each do |val| %>
-            <tr>
-              <td>
-                <label class="checkbox-inline">
-                  <input type="checkbox" value=""><%= val %>
-                </label>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="col-md-8">
-    <%= render 'shared/users' %>
-  </div>
-  <div class="col-md-1"></div>
-</div>
+<%= render 'shared/users' %>
 
 <script type="text/javascript">
   $(function() {

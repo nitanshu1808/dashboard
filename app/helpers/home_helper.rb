@@ -28,7 +28,7 @@ module HomeHelper
   end
 
   def create_links( val )
-    content_tag(:a, href: root_url({"page": page_num(val), type: link_text(val)}), "data-page-no": page_num(val), "data-remote": true, class: link_text(val).downcase) do
+    content_tag(:a, href: root_url({"page": page_num(val), type: link_text(val), sort: params["sort"], filter: params["filter"]}), "data-page-no": page_num(val), "data-remote": true, class: link_text(val).downcase) do
       link_text(val)
     end
   end
@@ -65,4 +65,11 @@ module HomeHelper
     params["page"]
   end
 
+  def filter_url(val)
+    root_url({page: params["page"], filter: val, sort: params["sort"]})
+  end
+
+  def sort_url(val)
+    root_url({page: params["page"], filter: params["filter"], sort: val})
+  end
 end

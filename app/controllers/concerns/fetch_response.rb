@@ -31,6 +31,6 @@ module FetchResponse
   # private methods
   private
   def api_params
-    {page: params["page"], sort: params["sort"]}.compact
+    {page: params["page"], sort: params["sort"], filter: params["filter"]}.compact
   end
 end

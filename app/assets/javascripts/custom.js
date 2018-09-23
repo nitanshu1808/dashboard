@@ -2,7 +2,7 @@ $(document).ready(function(){
   $('.filterable .btn-filter').on('click', onFilterbtnClick);
   $('.filterable .filters input').on('keyup', onKeyPressTextSearch);
   $('.delete-user').on('click', onDeleteBtnClick);
-  // $('.pagination li a').on('click', onPageNumberClick)
+  $('.checkbox-inline').on('click', oncheckBoxLabelClick);
 });
 
 
@@ -187,17 +187,20 @@ function onPageNumberClick( evt ){
 }
 
 function setPrevNextPageLink( type, page_num ){
+
   $('.canvasjs-chart-credit').remove();
   var next      = $('.next')
   var prev      = $('.previous')
-  var pageNum   = parseInt(page_num);
+  var pageNum   = page_num && parseInt(page_num);
+
+  if (!(pageNum) && pageNum <= 0) return false
   var totalPages = parseInt($(".pagination").attr("data-total-page"));
   switch (type) {
     case  'Next':
-      setPrevNextAttrVal(next, prev, pageNum + 1, pageNum)
+      setPrevNextAttrVal(next, prev, pageNum + 1, pageNum - 1)
       break;
     case  'Previous':
-      setPrevNextAttrVal(next, prev, pageNum, pageNum <= 0 && 0)
+      setPrevNextAttrVal(next, prev, pageNum, (pageNum <= 0 && 0) || pageNum - 1)
     break;
     case 'Last':
       setPrevNextAttrVal(next, prev, 0, totalPages - 1);
@@ -208,6 +211,23 @@ function setPrevNextPageLink( type, page_num ){
 }
 
 function setPrevNextAttrVal(next, prev, nextVal, prevVal){
-  next.attr('href', location + '?page=' +  (nextVal) + '&type=Next');
-  prev.attr('href', location + '?page=' +  (prevVal) + '&type=Previous');
+  var url = next.attr("href")
+  if (url.includes("page")){
+    next.attr('href', url.replace(/=\d/, "=" + nextVal));
+    prev.attr('href', url.replace(/=\d/, "=" + prevVal));  
+  } else{
+    next.attr('href', url + "&page=" + nextVal);
+    prev.attr('href', url + "&page=" + prevVal);
+  }  
+}
+
+function oncheckBoxLabelClick(evt){
+  evt.preventDefault();
+  var checkBox  = $(this).find('input[type=checkbox]');
+  var self      = $(this);
+  if (!(checkBox.is(":checked"))){
+    checkBox.prop( "checked", true );
+  }else{
+    checkBox.prop( "checked", false );
+  }
 }

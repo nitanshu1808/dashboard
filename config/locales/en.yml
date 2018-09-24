@@ -25,3 +25,11 @@ en:
     next:            'Next'
     prev:            'Previous'
     confirm_deletion: "Are you sure, You want to delete the user?"
+    create_user:      "Create User"
+    enter_email:      "Enter Email"
+    enter_first_name: "Enter First Name"
+    enter_last_name:  "Enter Last Name"
+    enter_amount:     "Enter Amount"
+    enter_val:        "Please enter a %{val}."
+    character_validation: "%{val} must be less than %{num} characters"
+    numeric:          "Should be Numeric"

@@ -10,5 +10,10 @@ class HomeController < ApplicationController
   def delete_user
     respns = remove_user
     render json: {respns: respns}
-  end  
+  end
+
+  def create_user
+    @resps = construct_user
+  end
+
 end

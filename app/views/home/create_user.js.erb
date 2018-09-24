@@ -1,0 +1,8 @@
+$('.validation-error').remove();
+<% if @resps["status"] == "Error" %>
+  $('#myModalLabel').after('<span class = "validation-error">' + '<%= @resps["data"][0] %>' + '</span>')
+<% else %>
+  $('.user-details tr:first-child').before("<%= j(render 'shared/new_user_data', { user: @resps['data'] }) %>")
+  $("#myModal").modal('hide');
+  $("#new_user")[0].reset();
+<% end %>

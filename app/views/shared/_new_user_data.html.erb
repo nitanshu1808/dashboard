@@ -1,0 +1,12 @@
+<tr>
+  <td><%= user['email'] %></td>
+  <td><%= user['first_name'] %></td>
+  <td><%= user['last_name'] %></td>
+  <td><%= user['amount'] %></td>
+  <td><%= date_format( user['created_at'] ) %></td>
+  <td>
+    <%= link_to("javascript:void(0)", class: "btn btn-danger delete-user", "data-id": user["id"] ) do %>
+      <span class=" glyphicon glyphicon-trash"></span>  <%= I18n.t('app.delete') %>
+    <% end %>
+  </td>
+</tr>

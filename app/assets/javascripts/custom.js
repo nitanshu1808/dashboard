@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $('.filterable .btn-filter').on('click', onFilterbtnClick);
   $('.filterable .filters input').on('keyup', onKeyPressTextSearch);
   $('.delete-user').on('click', onDeleteBtnClick);
@@ -231,3 +231,47 @@ function oncheckBoxLabelClick(evt){
     checkBox.prop( "checked", false );
   }
 }
+
+
+$( document ).on('turbolinks:load', function() {
+  $('#myModal').on('click', '.modal-body',  function() {
+    $("#new_user").validate({
+      rules: {
+        "user[first_name]": {
+          required: true,
+          maxlength: 30
+        },
+        "user[last_name]": {
+          required: true,
+          maxlength: 30
+        },
+        "user[email]": {
+          required: true,
+          maxlength: 30
+        },
+        "user[amount]":{
+          required: true,
+          number:   true
+        }
+      },
+      messages: {
+        "user[first_name]": {
+            required:  I18n.t("app.enter_val", {val: I18n.t("app.first_name")}),
+            maxlength: I18n.t("app.character_validation", {val: I18n.t("app.first_name"), num: 30})
+        },
+        "user[last_name]": {
+            required:  I18n.t("app.enter_val", {val: I18n.t("app.last_name")}),
+            maxlength: I18n.t("app.character_validation", {val: I18n.t("app.last_name"), num: 30})
+        },
+        "user[email]": {
+            required:  I18n.t("app.enter_val", {val: I18n.t("app.email")}),
+            maxlength: I18n.t("app.character_validation", {val: I18n.t("app.email"), num: 30})
+        },
+        "user[amount]": {
+            required:  I18n.t("app.enter_val", {val: I18n.t("app.amount")}),
+            number:    I18n.t("app.numeric")
+        }
+      }
+    });
+  });
+})

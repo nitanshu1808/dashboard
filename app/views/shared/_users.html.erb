@@ -15,7 +15,10 @@
         </div>
       </div>
       <div class="pull-right">
-        <button class="btn btn-default btn-xs create-btn"><span class="glyphicon glyphicon glyphicon-plus"></span> <%= I18n.t("app.create") %></button>
+        <%= link_to new_user_path, class: "btn btn-default btn-xs create-btn", remote: true do %>
+          <span class="glyphicon glyphicon glyphicon-plus"></span> <%= I18n.t("app.create") %>
+        <% end %>
+        <!-- <button class="btn btn-default btn-xs create-btn"></button> -->
         <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon glyphicon-search"></span>  <%= I18n.t("app.search") %></button>
       </div>
     </div>
@@ -30,7 +33,7 @@
           <th><input type="text" class="form-control destroy" placeholder="<%= I18n.t("app.destroy") %>" disabled></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="user-details">
         <% @users.each do |user| %>
           <tr>
             <td><%= user['email'] %></td>

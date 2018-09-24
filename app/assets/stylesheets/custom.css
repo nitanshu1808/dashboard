@@ -82,3 +82,24 @@ table, th, tr, td{
 .pagination{
   margin: 0px !important;
 }
+
+.form-text-field{
+  width: 80% !important;
+}
+
+.create-user{
+  width: 30%;
+  margin-right: 116px;
+  margin-bottom: -6px;
+}
+
+.error{
+  color: red  !important;
+  float: left;
+  margin: 1px 0px 10px 0px;
+}
+
+.validation-error{
+  color: red;
+  font-weight: bold;
+}

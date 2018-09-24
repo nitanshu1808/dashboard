@@ -9,7 +9,7 @@ module HomeHelper
 
   def characters_group
     [ "A - E",
-      "F - Z",
+      "F - J",
       "K - O",
       "P - T",
       "U - Z"

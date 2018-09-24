@@ -3,18 +3,16 @@ module FetchResponse
   # fetching response from user webservices for retreival, deletion, creation
 
   def users_info
-    url = ENDPOINT["base_url"] + ENDPOINT["users"]
-    get_response(url, {request_type: :get}, api_params )
+    get_response(base_url, {request_type: :get}, api_params )
   end
 
   def remove_user
-    url = ENDPOINT["base_url"] + ENDPOINT["users"] + "/#{params["id"]}"
+    url = base_url + "/#{params["id"]}"
     get_response(url, {request_type: :delete}, {})
   end
 
   def construct_user
-    url = ENDPOINT["base_url"] + ENDPOINT["users"]
-    get_response(url, {request_type: :post}, user_params)
+    get_response(base_url, {request_type: :post}, user_params)
   end
 
   # private methods
@@ -41,5 +39,9 @@ module FetchResponse
         raise error
       end
     end
+  end
+
+  def base_url
+    ENDPOINT["base_url"] + ENDPOINT["users"]
   end
 end

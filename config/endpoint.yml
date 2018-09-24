@@ -1,6 +1,6 @@
 default: &default
   base_url:   'https://messagedashboardapi.herokuapp.com/api/v1/'
-  base_url:   'http://localhost:3001/api/v1/'
+  # base_url:   'http://localhost:3001/api/v1/'
   users:      'users'
 
 development:
